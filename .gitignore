@@ -1,0 +1,9 @@
+# build output
+build/
+
+# game executables are never committed (Blizzard / server property)
+*.exe
+
+# logs and scratch
+*.log
+__pycache__/

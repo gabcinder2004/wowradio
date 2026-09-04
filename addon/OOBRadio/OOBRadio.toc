@@ -1,0 +1,7 @@
+## Interface: 30300
+## Title: Out of Bounds Radio
+## Notes: In-game radio. Click the minimap button to tune in, set the volume and see what is playing.
+## Author: gabcinder
+## Version: 0.3.0
+## SavedVariables: OOBRadioDB
+OOBRadio.lua

@@ -1,0 +1,2 @@
+#include "resource.h"
+IDR_BASS_DLL RCDATA "../third_party/bass/bass.dll"
