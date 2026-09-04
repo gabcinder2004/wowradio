@@ -12,9 +12,9 @@ on/off, volume and the current track.
 The 3.3.5a client only loads DLLs that its executable asks for, so the game
 executable needs to import `WowRadio.dll`. How that import is added is up to
 the server team; it is the same kind of change private servers already make
-to their client executable. A helper script in `tools/` shows one way to do
-it. The DLL exports a single symbol, `WowRadio_Loaded`, for the import to
-bind to; all of its work happens when it is loaded.
+to their client executable. The DLL exports a single symbol,
+`WowRadio_Loaded`, for the import to bind to; all of its work happens when it
+is loaded.
 
 Nothing else is replaced or renamed. Uninstalling is deleting the DLL and
 launching an executable that does not import it.
@@ -74,8 +74,7 @@ calls happen on the worker thread.
 ## Building
 
 Requirements: Visual Studio Build Tools (MSVC, x86 target) with CMake and
-Ninja, which the Build Tools installer bundles. Python 3 with `lief` for the
-exe patcher.
+Ninja, which the Build Tools installer bundles.
 
 ```
 build.cmd
@@ -90,7 +89,6 @@ the path at the top if your Build Tools live elsewhere.
 src/main.cpp            the DLL: hooks, Lua API, worker thread
 src/bass_loader.*       loads the embedded bass.dll from memory
 src/resources.rc        embeds third_party/bass/bass.dll
-tools/patch_exe_import.py  example: adds the WowRadio.dll import to an exe
 addon/OOBRadio/         the player-facing addon
 third_party/bass/       BASS 2.4 (un4seen), see bass.txt for licence terms
 third_party/MemoryModule/  in-memory DLL loader (MPL 2.0)

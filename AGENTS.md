@@ -9,7 +9,6 @@ reader-facing description.
 
 - `src/main.cpp` — the DLL: client addresses, the two startup patches, Lua API, worker thread.
 - `src/bass_loader.*` — loads the bass.dll embedded via `src/resources.rc` (MemoryModule, disk fallback).
-- `tools/patch_exe_import.py` — example of adding the `WowRadio.dll` import to a game exe (needs `lief`).
 - `addon/OOBRadio/` — the player-facing addon (3.3.5a Lua 5.1, interface 30300).
 - `third_party/` — BASS (un4seen licence) and MemoryModule (MPL 2.0). Do not modify.
 
@@ -18,8 +17,9 @@ reader-facing description.
 - `build.cmd` → `build\WowRadio.dll`. MSVC x86 via `vcvars32.bat`, CMake + Ninja from VS Build Tools.
 - The DLL must stay single-file and self-contained: BASS embedded, CRT static (`MultiThreaded`),
   imports limited to kernel32 / user32 / shell32. Check with a PE import viewer after changes.
-- To test: patch a copy of a 3.3.5a exe with the tool, drop `WowRadio.dll` and the addon into the
-  game folder, launch the patched exe. `wowradio.log` next to the DLL should show
+- To test: use a 3.3.5a exe whose import table includes `WowRadio.dll` (a local copy patched with
+  a PE tool such as `lief`), drop `WowRadio.dll` and the addon into the game folder, launch it.
+  `wowradio.log` next to the DLL should show
   `hook installed: yes`, then `Radio_* Lua functions registered` after entering the world, then
   `BASS ... initialised (in-memory)` on first play. `/reload` in game must keep the functions.
 - Never commit `.exe` files or logs (`.gitignore` enforces it).
